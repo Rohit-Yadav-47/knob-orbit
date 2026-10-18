@@ -1,0 +1,16 @@
+{
+  "accent": ["#7C5CFF", "#D16BFF"],
+  "keys": { "right": "VolumeUp", "left": "VolumeDown", "click": "VolumeMute" },
+  "menuTimeoutMs": 6000,
+  "items": [
+    { "label": "Tabs",       "icon": "PanelsTopLeft", "type": "mode", "mode": "tabs" },
+    { "label": "Apps",       "icon": "AppWindow",     "type": "mode", "mode": "apps" },
+    { "label": "Scroll",     "icon": "MoveVertical",  "type": "mode", "mode": "scroll" },
+    { "label": "Zoom",       "icon": "ZoomIn",        "type": "mode", "mode": "zoom" },
+    { "label": "Play/Pause", "icon": "Play",          "type": "keys", "keys": "mediaplaypause" },
+    { "label": "New Tab",    "icon": "Plus",          "type": "keys", "keys": "ctrl+t" },
+    { "label": "Close Tab",  "icon": "X",             "type": "keys", "keys": "ctrl+w" },
+    { "label": "Snip",       "icon": "Scissors",      "type": "keys", "keys": "win+shift+s" },
+    { "label": "Desktop",    "icon": "Monitor",       "type": "keys", "keys": "win+d" }
+  ]
+}
