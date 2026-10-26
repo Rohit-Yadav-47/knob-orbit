@@ -16,6 +16,7 @@ The smaller indicator while Scroll mode is active:
 
 - Click or rotate the knob to open the orb. Rotation also moves the selection.
 - Click the knob while the orb is open to run the selected action or enter a mode.
+- Choose **ChatGPT** to open chatgpt.com in your default browser.
 - In a mode, rotate to use that control; click again to exit.
 - The orb closes after six seconds without input. Rotation opens it again.
 - Normal knob clicks and rotation do not mute or change volume. Select **Volume** and click to enter Volume mode; then rotate right to raise volume or left to lower it. Click again to exit.
@@ -32,7 +33,7 @@ The smaller indicator while Scroll mode is active:
 ## Customise — `orbit.config.json`
 - `icon`: any name from lucide.dev/icons in PascalCase (e.g. `Github`, `Music`)
 - `type: "keys"` + `keys: "ctrl+shift+t"`
-- `type: "open"` + `target: "chrome"`, `"code"`, `"https://youtube.com"`, `"notepad"`, or `"C:\\Projects"`
+- `type: "open"` + `target: "chrome"`, `"code"`, `"https://chatgpt.com/"`, `"notepad"`, or `"C:\\Projects"`
 - `type: "mode"` + `mode: "tabs" | "apps" | "scroll" | "volume" | "zoom" | "media"`
 - `accent`: two colours for the gradient
 

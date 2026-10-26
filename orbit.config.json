@@ -9,6 +9,7 @@
     { "label": "Volume",     "icon": "Volume2",       "type": "mode", "mode": "volume" },
     { "label": "Play/Pause", "icon": "Play",          "type": "keys", "keys": "mediaplaypause" },
     { "label": "Chrome",     "icon": "Chrome",        "type": "open", "target": "chrome" },
+    { "label": "ChatGPT",    "icon": "MessageCircle", "type": "open", "target": "https://chatgpt.com/" },
     { "label": "VS Code",    "icon": "Code",          "type": "open", "target": "code" },
     { "label": "Snip",       "icon": "Scissors",      "type": "keys", "keys": "win+shift+s" }
   ]
