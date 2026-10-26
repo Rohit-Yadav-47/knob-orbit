@@ -16,7 +16,7 @@ app.whenReady().then(async () => {
   try {
     await win.loadFile(path.join(root, 'dist', 'index.html'));
     await win.webContents.executeJavaScript("window.orbitDemo('right'); window.orbitDemo('right');");
-    await pause(600);
+    await pause(1200);
     fs.writeFileSync(path.join(root, 'assets', 'preview.png'), await win.webContents.capturePage().then((image) => image.toPNG()));
 
     win.setSize(600, 400);

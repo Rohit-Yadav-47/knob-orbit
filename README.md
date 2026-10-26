@@ -18,7 +18,8 @@ The smaller indicator while Scroll mode is active:
 - Click the knob while the orb is open to run the selected action or enter a mode.
 - In a mode, rotate to use that control; click again to exit.
 - The orb closes after six seconds without input. Rotation opens it again.
-- While the app is running, the knob never mutes or changes system volume. Windows sees the knob as volume keys, so volume keys on other keyboards are also captured.
+- Normal knob clicks and rotation do not mute or change volume. Select **Volume** and click to enter Volume mode; then rotate right to raise volume or left to lower it. Click again to exit.
+- Windows sees the knob as volume keys, so volume keys on other keyboards are also captured while the app runs.
 - Without a knob, use ← / → or Enter to open the orb. Then use ← / → to move, Enter to select, and Esc to close.
 
 ## Run
@@ -31,8 +32,8 @@ The smaller indicator while Scroll mode is active:
 ## Customise — `orbit.config.json`
 - `icon`: any name from lucide.dev/icons in PascalCase (e.g. `Github`, `Music`)
 - `type: "keys"` + `keys: "ctrl+shift+t"`
-- `type: "open"` + `target: "https://youtube.com"` or `"notepad"` or `"C:\\Projects"`
-- `type: "mode"` + `mode: "tabs" | "apps" | "scroll" | "zoom" | "media"`
+- `type: "open"` + `target: "chrome"`, `"code"`, `"https://youtube.com"`, `"notepad"`, or `"C:\\Projects"`
+- `type: "mode"` + `mode: "tabs" | "apps" | "scroll" | "volume" | "zoom" | "media"`
 - `accent`: two colours for the gradient
 
 After editing, tray → *Reload items*.

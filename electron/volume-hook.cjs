@@ -19,6 +19,7 @@ const UnhookWindowsHookEx = user32.func('int __stdcall UnhookWindowsHookEx(void 
 const VOLUME_KEYS = { 0xad: 'click', 0xae: 'left', 0xaf: 'right' };
 const KEY_DOWN = new Set([0x100, 0x104]);
 const KEY_MESSAGES = new Set([0x100, 0x101, 0x104, 0x105]);
+const VOLUME_EXTRA = 0x4b4f5242;
 
 function installVolumeHook(onKey) {
   let hook = null;
@@ -27,7 +28,7 @@ function installVolumeHook(onKey) {
     if (code >= 0 && KEY_MESSAGES.has(Number(message))) {
       const key = koffi.decode(data, KBDLLHOOKSTRUCT);
       const action = VOLUME_KEYS[key.vkCode];
-      if (action) {
+      if (action && Number(key.dwExtraInfo) !== VOLUME_EXTRA) {
         if (KEY_DOWN.has(Number(message))) {
           if (action !== 'click' || !clickHeld) setImmediate(() => onKey(action));
           if (action === 'click') clickHeld = true;

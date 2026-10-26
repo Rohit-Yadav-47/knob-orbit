@@ -2,6 +2,7 @@
 
 const KEYUP = 0x2;
 const EXTENDED = 0x1;
+const VOLUME_EXTRA = 0x4b4f5242; // Marks volume keys deliberately sent by Knob Orbit.
 
 const VK = {
   ctrl: 0x11, control: 0x11, shift: 0x10, alt: 0x12, win: 0x5b, windows: 0x5b,
@@ -27,7 +28,8 @@ if (process.platform === 'win32') {
   const user32 = koffi.load('user32.dll');
   const keybd_event = user32.func('void __stdcall keybd_event(uint8_t vk, uint8_t scan, uint32_t flags, uintptr_t extra)');
   const mouse_event = user32.func('void __stdcall mouse_event(uint32_t flags, uint32_t dx, uint32_t dy, int32_t data, uintptr_t extra)');
-  keybd = (vk, up) => keybd_event(vk, 0, (up ? KEYUP : 0) | (EXT.has(vk) ? EXTENDED : 0), 0);
+  keybd = (vk, up) => keybd_event(vk, 0, (up ? KEYUP : 0) | (EXT.has(vk) ? EXTENDED : 0),
+    vk >= 0xad && vk <= 0xaf ? VOLUME_EXTRA : 0);
   mouse = (delta) => mouse_event(0x0800, 0, 0, delta, 0);
 } else {
   console.warn('[knob-orbit] input simulation only works on Windows');

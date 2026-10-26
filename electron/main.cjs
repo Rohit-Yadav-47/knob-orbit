@@ -5,7 +5,7 @@
 const { app, BrowserWindow, globalShortcut, screen, Tray, Menu, nativeImage, shell } = require('electron');
 const path = require('path');
 const fs = require('fs');
-const { exec } = require('child_process');
+const { exec, execFile } = require('child_process');
 const input = require('./input.cjs');
 const { installVolumeHook } = require('./volume-hook.cjs');
 
@@ -176,6 +176,9 @@ function turnMode(d) {
     case 'scroll':
       input.wheel(d > 0 ? -240 : 240);
       break;
+    case 'volume':
+      input.combo(d > 0 ? 'volumeup' : 'volumedown');
+      break;
     case 'zoom':
       input.ctrlWheel(d > 0 ? 120 : -120);
       break;
@@ -208,6 +211,17 @@ function runAction(item) {
       input.combo(item.keys);
     } else if (item.type === 'open') {
       if (/^[a-z]+:\/\//i.test(item.target)) shell.openExternal(item.target);
+      else if (item.target === 'chrome' || item.target === 'code') {
+        const base = item.target === 'chrome'
+          ? [process.env.PROGRAMFILES, process.env['PROGRAMFILES(X86)'], process.env.LOCALAPPDATA]
+              .filter(Boolean).map((p) => path.join(p, 'Google', 'Chrome', 'Application', 'chrome.exe'))
+          : [process.env.LOCALAPPDATA && path.join(process.env.LOCALAPPDATA, 'Programs', 'Microsoft VS Code', 'Code.exe'),
+              process.env.PROGRAMFILES && path.join(process.env.PROGRAMFILES, 'Microsoft VS Code', 'Code.exe')]
+              .filter(Boolean);
+        const executable = base.find((p) => fs.existsSync(p));
+        if (executable) execFile(executable);
+        else exec(`start "" "${item.target}"`);
+      }
       else exec(`start "" "${item.target}"`);
     }
   } catch (err) {
